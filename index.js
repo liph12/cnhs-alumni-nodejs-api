@@ -11,7 +11,6 @@ const API_KEY = process.env.API_KEY;
 
 app.use(cors());
 
-// Helper to create full API URL
 const buildUrl = (file) =>
   `https://api.cnhsalumniassociation.ph/resources/json/${file}.json?api_key=${API_KEY}`;
 
@@ -43,5 +42,7 @@ app.get("/api/barangays", async (_req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`🚀 Proxy server running at http://localhost:${PORT}`);
+  console.log(
+    `🚀 Proxy server running at http://system.cnhsalumniassociation.ph:${PORT}`
+  );
 });
