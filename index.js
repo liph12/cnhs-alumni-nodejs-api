@@ -1,7 +1,7 @@
-import express, { Request, Response } from "express";
-import axios from "axios";
-import cors from "cors";
-import dotenv from "dotenv";
+const express = require("express");
+const axios = require("axios");
+const cors = require("cors");
+const dotenv = require("dotenv");
 
 dotenv.config();
 
@@ -12,10 +12,10 @@ const API_KEY = process.env.API_KEY;
 app.use(cors());
 
 // Helper to create full API URL
-const buildUrl = (file: string): string =>
+const buildUrl = (file) =>
   `https://api.cnhsalumniassociation.ph/resources/json/${file}.json?api_key=${API_KEY}`;
 
-app.get("/api/provinces", async (_req: Request, res: Response) => {
+app.get("/api/provinces", async (_req, res) => {
   try {
     const response = await axios.get(buildUrl("provinces"));
     res.json(response.data);
@@ -24,7 +24,7 @@ app.get("/api/provinces", async (_req: Request, res: Response) => {
   }
 });
 
-app.get("/api/cities", async (_req: Request, res: Response) => {
+app.get("/api/cities", async (_req, res) => {
   try {
     const response = await axios.get(buildUrl("cities"));
     res.json(response.data);
@@ -33,7 +33,7 @@ app.get("/api/cities", async (_req: Request, res: Response) => {
   }
 });
 
-app.get("/api/barangays", async (_req: Request, res: Response) => {
+app.get("/api/barangays", async (_req, res) => {
   try {
     const response = await axios.get(buildUrl("barangays"));
     res.json(response.data);
@@ -43,7 +43,5 @@ app.get("/api/barangays", async (_req: Request, res: Response) => {
 });
 
 app.listen(PORT, () => {
-  console.log(
-    `🚀 Proxy server running at https://:system.cnhsalumniassociation.ph:${PORT}`
-  );
+  console.log(`🚀 Proxy server running at http://localhost:${PORT}`);
 });
